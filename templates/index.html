@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <link rel="stylesheet" href="{% static 'style.css' %}"> {% endcomment %}
+    <title>Home Page</title>
+</head>
+<body>
+    <style>
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+    }
+    
+    .form {
+        width: 50%;
+        text-align: center;
+    }
+    
+    .form-label {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+    }
+    
+    .form-textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+    }
+    
+    .form-button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+    }
+    
+    </style>
+    <div class="form-container">
+        <form action="counter" method="GET" class="form">
+            {% csrf_token %}
+            {% comment %} تبدیل پارامتر پست شده در لینک به یک کد رمزگذاری شده {% endcomment %}
+            <label for="message" class="form-label">Enter your message:</label>
+            <textarea id="message" name="message" rows="5" class="form-textarea"></textarea>
+            <button type="submit" class="form-button">Submit</button>
+        </form>
+    </div>
+
+
+</body>
+</html>
