@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="#home">Home</a>
+        <a href="{% url 'index' %}">Home</a>
         <a href="#about">About</a>
         <a href="#portfolio">Portfolio</a>
         <a href="#contact">Contact</a>
@@ -24,27 +24,29 @@
     
     <section id="about" class="container">
         <div class="profile">
-            {% comment %} <img src="profile.jpg" alt="Profile Picture" class="profile-pic"> {% endcomment %}
-            <h2>John Doe</h2>
+            
+            <img src="{% static 'img/profile.jpg' %}" alt="profile picture" class="profile-pic">
+            <h2>Nima HTM</h2>
             <p>A passionate web developer and designer with a love for creativity and technology.</p>
         </div>
     </section>
 
     <section id="portfolio" class="container">
-        <h2> Portfolio
-
-        </h2> 
-        
+        <div class="section-header">
+            <h2>Portfolio</h2>
+        </div>
         <div class="portfolio-grid">
             <div class="portfolio-item">Web Design</div>
             <div class="portfolio-item">Mobile App</div>
             <div class="portfolio-item">UI/UX Project</div>
-            <div class="portfolio-item">E-commerce Website</div>
+          
         </div>
     </section>
 
     <section id="contact" class="container">
-        <h2>Contact Me</h2>
+        <div class="section-header">
+            <h2>Contact Me</h2>
+        </div>
         <form class="contact-form">
             <input type="text" placeholder="Your Name" required>
             <input type="email" placeholder="Your Email" required>
