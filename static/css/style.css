@@ -11,6 +11,9 @@ footer {
     margin-top: 30px;
     text-align: center;
 }
+ul {
+    list-style-type: none;
+  }
 .navbar {
     background: linear-gradient(90deg, #da6696, #b5285e);
     padding: 15px;
@@ -177,4 +180,66 @@ input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
+}
+
+.results {
+    width: 70%; /* Match the width of .contact-form */
+    margin: 30px auto; /* Center the results section horizontally */
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.results h2 {
+    color: #b5285e;
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center; /* Center the heading */
+}
+
+.meaning-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Align items to the right */
+    gap: 15px; /* Add spacing between items */
+    direction: rtl; /* Set text direction to right-to-left */
+    padding: 0;
+    margin: 0;
+}
+
+.meaning-item {
+    flex: 0 1 calc(30% - 15px); /* Each item takes 30% of the row width minus the gap */
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: right; /* Align text to the right */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+.meaning-item:hover {
+    background: #ffebf0;
+}
+
+.no-results {
+    color: #b5285e;
+    font-size: 18px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn-primary {
+    background: #b5285e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background: #da6696;
 }

@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Dictionary</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar">
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'dict' %}">Dictionary</a>
+        <a href="#about">About</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+        <a href="{% url 'login' %}">Login</a>
+    </div>
+
+    <div class="banner">Welcome to the Online Dictionary</div>
+
+    <section class="container">
+        <div class="section-header">
+            <h2>Search for a Word</h2>
+        </div>
+        <form method="post" class="contact-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-primary">Search</button>
+        </form>
+
+        {% if meaning %}
+            <div class="results">
+                <h2>Meanings for "{{ word }}":</h2>
+                <ul class="meaning-list">
+                    {% for m in meaning %}
+                        <li class="meaning-item">{{ m }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% elif word %}
+            <p class="no-results">No results found for "{{ word }}".</p>
+        {% endif %}
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Nima HTM. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
