@@ -1,17 +1,60 @@
 import requests
 #: برای تحلیل و استخراج اطلاعات از HTML سایت.
 from bs4 import BeautifulSoup 
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.http import HttpResponse
+from django.contrib.auth.models import User , auth
+from django.contrib import messages
 from .forms import WordForm
+from .models import portfolio,information
 # Create your views here.
 
 def index(request):
-    return render(request , 'index.html')
+    pf = portfolio.objects.all()
+    return render(request , 'index.html', {'pf':pf})
 
+
+def registeration(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        # age = request.POST['age']
+        password = request.POST['password']
+        
+        if (User.objects.filter(email=email).exists()):
+            messages.info(request , 'Email already exists')
+            return redirect('registeration')
+        elif (User.objects.filter(username=username).exists()):
+            messages.info(request , 'Username already exists')
+            return redirect('registeration')
+        else:
+            user = User.objects.create_user(username=username , email=email , password=password)
+            user.save()
+            messages.info(request , 'User created')
+            return redirect('login')
+            
+    else:    
+        return render(request , 'registeration.html')
 
 def login(request):
-    return render(request , 'login.html')
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        
+        user = auth.authenticate(username=username , password=password)
+        
+        if user:
+            auth.login(request , user)
+            return redirect('index')
+        else:
+            messages.info(request , 'Invalid credentials')
+            return redirect('login')
+    else:
+        return render(request , 'login.html')
+    
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
 
 
 def dict(request):

@@ -18,7 +18,15 @@
         <a href="#about">About</a>
         <a href="#portfolio">Portfolio</a>
         <a href="#contact">Contact</a>
+        
+        {% if user.is_authenticated %}
+        <a href="logout">Log out</a>
+        {% else %}
+        <a href="{% url 'registeration' %}">Registeration</a>
         <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+            
+        
     </div>
     
     <div class="banner">Welcome to My Personal Website</div>
@@ -28,7 +36,7 @@
             
             <img src="{% static 'img/profile.jpg' %}" alt="profile picture" class="profile-pic">
             <h2>Nima HTM</h2>
-            <p>A passionate web developer and designer with a love for creativity and technology.</p>
+            <p style="width:80%">         {{info.infoText}}       </p>
         </div>
     </section>
 
@@ -37,10 +45,11 @@
             <h2>Portfolio</h2>
         </div>
         <div class="portfolio-grid">
-            <div class="portfolio-item">Web Design</div>
-            <div class="portfolio-item">Mobile App</div>
-            <div class="portfolio-item">UI/UX Project</div>
-          
+            
+            {% for x in pf %}
+            <div class="portfolio-item">{{x.Name}}</div>
+            {% endfor %}
+   
         </div>
     </section>
 

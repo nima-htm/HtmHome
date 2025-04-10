@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Registeration Page</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -25,7 +25,7 @@
     
     <div class="container countainer-login">
         <div class="login-box">
-            <h2>Login to Your Account</h2>
+            <h2>Sign-Up</h2>
             
             {% for message in messages %}
                 <h4 class="register-message-err">{{ message }}</h4>
@@ -35,8 +35,11 @@
                 {% csrf_token %}
                 <input name="username" type="text" placeholder="Username" required>
                 <input name="password" type="password" placeholder="Password" required>
-                <button type="submit">Login</button>
-                <a href="{% url 'registeration' %}">Create new account</a>
+                {% comment %} <input name="age" type="number" placeholder="Age" required min="0"> {% endcomment %}
+                <input name="email" type="email" placeholder="Email" required>
+                <p>
+                <button type="submit">Register Account</button>
+                <a href="{% url 'login' %}">Already have an account?</a>
             </form>
             
         </div>
